@@ -11,8 +11,9 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             string name;
-            Console.WriteLine("Как тебя зовут?");
             while (true) {
+                Console.Clear();
+                Console.WriteLine("Как тебя зовут?");
                 name = Console.ReadLine();
                 if (name.Length == 0)
                 {
