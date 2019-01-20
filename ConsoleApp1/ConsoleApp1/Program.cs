@@ -21,7 +21,7 @@ namespace ConsoleApp1
                 Console.WriteLine("Вот кое что о твоей машине:");
                 ShowEnvironmentDetail();
             }
-            Console.ReadLine();
+            System.Windows.MessageBox.Show($"Это все, {name}!");
         }
         private static void ShowEnvironmentDetail()
         {
