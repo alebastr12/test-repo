@@ -10,17 +10,19 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            string name;
             Console.WriteLine("Как тебя зовут?");
-            String name = Console.ReadLine();
-            if (name.Length == 0)
-            {
-                Console.WriteLine("Эй, я спросил как тебя зовут!");
+            while (true) {
+                name = Console.ReadLine();
+                if (name.Length == 0)
+                {
+                    System.Windows.MessageBox.Show("Имя!!");
+                }
+                else break;
             }
-            else {
-                Console.WriteLine("Привет, {0}", name);
-                Console.WriteLine("Вот кое что о твоей машине:");
-                ShowEnvironmentDetail();
-            }
+            Console.WriteLine("Привет, {0}", name);
+            Console.WriteLine("Вот кое что о твоей машине:");
+            ShowEnvironmentDetail();
             System.Windows.MessageBox.Show($"Это все, {name}!");
         }
         private static void ShowEnvironmentDetail()
