@@ -18,8 +18,18 @@ namespace ConsoleApp1
             }
             else {
                 Console.WriteLine("Привет, {0}", name);
+                Console.WriteLine("Вот кое что о твоей машине:");
+                ShowEnvironmentDetail();
             }
             Console.ReadLine();
+        }
+        private static void ShowEnvironmentDetail()
+        {
+            foreach (string drive in Environment.GetLogicalDrives())
+                Console.WriteLine("Drive: {0}", drive);
+            Console.WriteLine("OS: {0}", Environment.OSVersion);
+            Console.WriteLine("Количество ядер: {0}", Environment.ProcessorCount);
+            Console.WriteLine("Версия .NET: {0}", Environment.Version);
         }
     }
 }
