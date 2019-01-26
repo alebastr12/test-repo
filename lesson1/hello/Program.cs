@@ -16,7 +16,9 @@ namespace hello
     {
         static void Main(string[] args)
         {
-            PrintPos("Бастраков Александр, Йошкар-Ола", (Console.WindowWidth/2) - 15, Console.WindowHeight/2);
+            string message = "Бастраков Александр, Йошкар-Ола";
+            Console.CursorVisible = false;
+            PrintPos(message, (Console.WindowWidth/2) - message.Length/2, Console.WindowHeight/2);
             Console.ReadKey();
         }
         static void PrintPos(string ms, int x, int y) {
