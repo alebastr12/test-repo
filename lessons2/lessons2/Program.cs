@@ -10,16 +10,37 @@ namespace lessons2
     {
         static void Main(string[] args)
         {
+            #region ex3 //Сумма нечетных положительных цифр
+            Console.WriteLine("Введите целые числа, признаком конца является ввод нуля:");
+            int numIn;
+            int sum = 0;
+            while(true)
+            {
+                numIn = int.Parse(Console.ReadLine());
+                if (numIn == 0) break;
+                else
+                {
+                    if ((numIn > 0) && (numIn % 2 != 0))
+                    {
+                        sum += numIn;
+                    }
+                }
+            }
+            Console.Write("Сумма положительных нечетных чисел: {0}", sum);
+            Console.ReadKey();
+            return;
+            #endregion
+            #region ex2 //Подсчет количества цифр
             Console.Write("Введите число: ");
             Console.WriteLine("В числе {0} цифр.",numberIn(int.Parse(Console.ReadLine())));
             Console.ReadKey();
-            return;
-            #region ex1
+            #endregion
+            #region ex1 //Нахождение минимального из трех
             Console.Write("Введите три целых числа разделенных пробелами: ");
             string[] num = Console.ReadLine().Split(' ');
             Console.WriteLine("Минимальное из трех: {0}", Min(int.Parse(num[0]), int.Parse(num[1]),int.Parse(num[2])));
             Console.ReadKey();
-            #endregion
+            #endregion 
         }
         /// <summary>
         /// Метод возвращает минимальное из трех чисел
