@@ -10,6 +10,33 @@ namespace lessons2
     {
         static void Main(string[] args)
         {
+            #region ex4 //Проверка логина и пароля
+            int i = 0;
+            string login, passw;
+            do
+            {
+                Console.Write("Введите логин:");
+                login = Console.ReadLine();
+                Console.Write("Введите пароль:");
+                passw = Console.ReadLine();
+                if (isPass(login, passw))
+                {
+                    Console.WriteLine("Приветствую, root!");
+                    break;
+                }
+                else {
+                    Console.Clear();
+                    Console.WriteLine("Неверный логин или пароль, попробуйте ещё раз. У вас {0} попыток", 2 - i);
+                    i++;
+                }
+            } while (i < 3);
+            if (i == 3)
+            {
+                Console.WriteLine("Вы не прошли авторизацию, для выхода нажмите любую клавишу.");
+                Console.ReadKey();
+                return;
+            }
+            #endregion
             #region ex3 //Сумма нечетных положительных цифр
             Console.WriteLine("Введите целые числа, признаком конца является ввод нуля:");
             int numIn;
@@ -26,9 +53,8 @@ namespace lessons2
                     }
                 }
             }
-            Console.Write("Сумма положительных нечетных чисел: {0}", sum);
+            Console.WriteLine("Сумма положительных нечетных чисел: {0}", sum);
             Console.ReadKey();
-            return;
             #endregion
             #region ex2 //Подсчет количества цифр
             Console.Write("Введите число: ");
@@ -70,6 +96,17 @@ namespace lessons2
                 i++;
             }
             return i;
+        }
+        /// <summary>
+        /// Метод проверки логина и пароля
+        /// </summary>
+        /// <param name="login">Логин</param>
+        /// <param name="passw">Пароль</param>
+        /// <returns>Возвращает истину, если логин и пароль верны, иначе ложь</returns>
+        static bool isPass(string login, string passw)
+        {
+            if (login == "root" && passw == "GeekBrains") return true;
+            else return false;
         }
     }
 }
