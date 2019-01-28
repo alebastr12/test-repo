@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lessons2", "lessons2\lesson
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "goodNumber", "goodNumber\goodNumber.csproj", "{D410237C-F195-4A29-8C07-14EE76C47CB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recurs", "recurs\recurs.csproj", "{5AC85695-38E6-4EAD-ABC5-C164D23BD773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D410237C-F195-4A29-8C07-14EE76C47CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D410237C-F195-4A29-8C07-14EE76C47CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D410237C-F195-4A29-8C07-14EE76C47CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC85695-38E6-4EAD-ABC5-C164D23BD773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC85695-38E6-4EAD-ABC5-C164D23BD773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC85695-38E6-4EAD-ABC5-C164D23BD773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC85695-38E6-4EAD-ABC5-C164D23BD773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
