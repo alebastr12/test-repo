@@ -9,7 +9,7 @@ namespace lesson3
     /// <summary>
     /// Класс для работы с дробями
     /// </summary>
-    class fraction
+    public class fraction
     {
 
         int num;
@@ -24,7 +24,8 @@ namespace lesson3
             get { return denom; }
             set { if (value == 0)
                     throw new ArgumentException("Знаменатель не может быть равен 0");
-            }
+                else denom = value;
+            } 
         }
         public fraction(int num, int denom)
         {
@@ -37,7 +38,7 @@ namespace lesson3
         /// <param name="a">первая дробь</param>
         /// <param name="b">вторая дробь</param>
         /// <returns>возвращает результат, экземпляр класса fracion</returns>
-        static fraction mult(fraction a, fraction b)
+        public static fraction mult(fraction a, fraction b)
         {
             return new fraction(a.num*b.num,a.denom*b.denom);
         }
@@ -58,7 +59,7 @@ namespace lesson3
         /// <param name="a">первая дробь</param>
         /// <param name="b">вторая дробь</param>
         /// <returns>Возвращает сумму в виде нового объекта</returns>
-        static fraction sum(fraction a, fraction b)
+        public static fraction sum(fraction a, fraction b)
         {
             if (a.denom != b.denom)
             {
@@ -79,7 +80,7 @@ namespace lesson3
         /// <param name="a">дробь a</param>
         /// <param name="b">дробь b</param>
         /// <returns>возвращает разницу в объекте fraction</returns>
-        static fraction sub(fraction a, fraction b)
+        public static fraction sub(fraction a, fraction b)
         {
             if (a.denom != b.denom)
             {
@@ -99,9 +100,49 @@ namespace lesson3
         /// <param name="divisor">Делимое</param>
         /// <param name="divisible">Делитель</param>
         /// <returns>Возвращает результат в объекте fraction</returns>
-        static fraction div(fraction divisor, fraction divisible)
+        public static fraction div(fraction divisor, fraction divisible)
         {
             return new fraction(divisor.num * divisible.denom, divisor.denom * divisible.num);
+        }
+        /// <summary>
+        /// Вычисляет наибольший общий делитель
+        /// </summary>
+        /// <param name="a">первое число</param>
+        /// <param name="b">второе число</param>
+        /// <returns></returns>
+        int nod(int a, int b)
+        {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+            while (a != b)
+                if (a > b) a = a - b; else b = b - a;
+            return a;
+        }
+        /// <summary>
+        /// Метод упрощения дробей
+        /// </summary>
+        void simpleFr()
+        {
+            int nod = this.nod(this.num, this.denom);
+            num = num / nod;
+            denom = denom / nod;
+        }
+        /// <summary>
+        /// Преобразует в double
+        /// </summary>
+        /// <returns>Результат</returns>
+        public double ToDouble()
+        {
+            return (double) num / denom;
+        }
+        /// <summary>
+        /// Метод деление объекта на дробь переданную в параметре
+        /// </summary>
+        /// <param name="divisible">делитель</param>
+        /// <returns>Результат деления</returns>
+        public fraction div(fraction divisible)
+        {
+            return new fraction(this.num * divisible.denom, this.denom * divisible.num);
         }
         /// <summary>
         /// Метод сложения с дробью. Не изменяет объект.
@@ -158,15 +199,29 @@ namespace lesson3
         /// <param name="a">множитель</param>
         public fraction mult(fraction a)
         {
-            fraction rez = new fraction(a.Num, a.Denom);
-            rez.num = this.num * a.num;
-            rez.denom = this.denom * a.denom;
+            fraction rez = new fraction(a.Num, a.Denom)
+            {
+                num = this.num * a.num,
+                denom = this.denom * a.denom
+            };
             return rez;
         }
 
         public override string ToString()
         {
-            return string.Format($"{num}/{denom}");
+            if (denom < 0)
+            {
+                num = -num;
+                denom = -denom;
+            }
+            if (num == 0)
+            {
+                return string.Format($"0");
+            } else
+            {
+                this.simpleFr();
+                return string.Format($"{num}/{denom}");
+            }
         }
 
         public fraction Copy()
@@ -178,6 +233,11 @@ namespace lesson3
         {
             fraction objFr = (fraction)obj;
             return (objFr.num==this.num&&objFr.denom==this.denom);
+        }
+
+        public override int GetHashCode()
+        {
+            return num*denom;
         }
 
     }
