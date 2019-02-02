@@ -112,6 +112,7 @@ namespace lesson3
         /// <returns></returns>
         int nod(int a, int b)
         {
+            if (a == 0) return 1;
             a = Math.Abs(a);
             b = Math.Abs(b);
             while (a != b)
@@ -121,7 +122,7 @@ namespace lesson3
         /// <summary>
         /// Метод упрощения дробей
         /// </summary>
-        void simpleFr()
+        public void simpleFr()
         {
             int nod = this.nod(this.num, this.denom);
             num = num / nod;
@@ -219,7 +220,7 @@ namespace lesson3
                 return string.Format($"0");
             } else
             {
-                this.simpleFr();
+                //this.simpleFr();
                 return string.Format($"{num}/{denom}");
             }
         }

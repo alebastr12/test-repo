@@ -17,7 +17,15 @@ namespace lesson3
                 Console.Write("Введите первую дробь в формате x/y:");
                 if (parseFract(Console.ReadLine(), out num, out denom))
                 {
-                    a = new fraction(num, denom);
+                    try
+                    {
+                        a = new fraction(num, denom);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        continue;
+                    }
                 }
                 else {
                     Console.WriteLine("Неверный формат!");
@@ -29,7 +37,14 @@ namespace lesson3
                 Console.Write("Введите вторую дробь в формате x/y:");
                 if (parseFract(Console.ReadLine(), out num, out denom))
                 {
-                    b = new fraction(num, denom);
+                    try
+                    {
+                        b = new fraction(num, denom);
+                    } catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        continue;
+                    }
                 }
                 else
                 {
@@ -51,6 +66,7 @@ namespace lesson3
                         continue;
                         
                 }
+                rez.simpleFr();
                 Console.WriteLine($"{a.ToString()}" + op.ToString() + $"{b.ToString()}={rez.ToString()} ({rez.ToDouble().ToString()})");
                 Console.WriteLine("Для выходанажмите q, для повтора любую другую клавишу.");
             } while (Console.ReadKey(false).KeyChar != 'q');
