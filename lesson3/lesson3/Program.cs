@@ -71,7 +71,13 @@ namespace lesson3
                 Console.WriteLine("Для выходанажмите q, для повтора любую другую клавишу.");
             } while (Console.ReadKey(false).KeyChar != 'q');
         }
-
+        /// <summary>
+        /// Парсер дроби из строки в формате x/y
+        /// </summary>
+        /// <param name="str">Исходная строка</param>
+        /// <param name="num">Параметр для записи числителя</param>
+        /// <param name="denom">Параметр для записи знаменателя</param>
+        /// <returns>Возвращает true в случае успеха, иначе false</returns>
         static bool parseFract(string str,out int num,out int denom)
         {
             num = 0;
