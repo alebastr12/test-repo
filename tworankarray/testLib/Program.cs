@@ -11,7 +11,7 @@ namespace testLib
     {
         static void Main(string[] args)
         {
-            ArrayTwoRank manArray = new ArrayTwoRank(2, 15);
+            ArrayTwoRank manArray = new ArrayTwoRank(5, 20);
             Console.WriteLine(manArray.ToString());
             Console.WriteLine($"Максимальное: {manArray.Max}");
             manArray.IndexOfMax(out uint xMax, out uint yMax);
@@ -19,7 +19,16 @@ namespace testLib
             Console.WriteLine($"Минимальное: {manArray.Min}");
             Console.WriteLine($"Сумма элементов: {manArray.SumOf()}");
             Console.WriteLine($"Сумма элементов больше 15: {manArray.SumOfMore(15)}");
-            manArray.ToFile(@"temp.txt");
+            try
+            {
+                manArray.ToFile(@"temp.txt");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message}");
+                Console.ReadKey();
+                return;
+            }
             Console.WriteLine("Чтение из файла in.txt");
             ArrayTwoRank fileArray;
             try

@@ -23,7 +23,7 @@ namespace tworankarray
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = r.Next(50);
+                    array[i, j] = r.Next(100);
                 }
             }
         }
@@ -35,7 +35,6 @@ namespace tworankarray
         public ArrayTwoRank(string filename)
         {
             string[] fileStrings;
-            string[][] numStrings = new string[2][];
             try
             {
                 fileStrings = File.ReadAllLines(filename);
@@ -44,27 +43,20 @@ namespace tworankarray
             {
                 throw;
             }
-            if (fileStrings.Rank >= 1)
+            string[][] numStrings = new string[fileStrings.Length][];
+            for (int i = 0; i < fileStrings.Length; i++)
             {
-                numStrings[0] = fileStrings[0].Split(' ');
-                numStrings[1] = fileStrings[1].Split(' ');
+                numStrings[i] = fileStrings[i].Split(' ');
             }
-            else
-            {
-                throw new Exception("Ошибка формата файла. Файл должен содержать не менее двух строк чисел разделенных пробелами.");
-            }
-            if (numStrings[0].Length!= numStrings[1].Length)
-            {
-                throw new Exception("Ошибка формата файла - строки не равны. Файл должен содержать не менее двух строк чисел разделенных пробелами.");
-            }
-            array = new int[2, numStrings[0].Length-1];
+            array = new int[fileStrings.Length, numStrings[0].Length-1];
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < fileStrings.Length; i++)
             {
                 for (int j = 0; j < numStrings[0].Length-1; j++)
                 {
                     if(!int.TryParse(numStrings[i][j],out array[i, j])) {
-                        throw new Exception("Ошибка формата файла - не число. Файл должен содержать не менее двух строк чисел разделенных пробелами.");
+                        throw new Exception("Ошибка формата файла - не число или неверный формат. Файл должен содержать " +
+                            "строки чисел разделенных пробелами. Количество чисел в строках должно быть одинаковым.");
                     }
                 }
             }
