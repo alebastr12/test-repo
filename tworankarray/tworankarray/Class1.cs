@@ -23,7 +23,7 @@ namespace tworankarray
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = r.Next();
+                    array[i, j] = r.Next(50);
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace tworankarray
             {
                 throw;
             }
-            if (fileStrings.Rank >= 2)
+            if (fileStrings.Rank >= 1)
             {
                 numStrings[0] = fileStrings[0].Split(' ');
                 numStrings[1] = fileStrings[1].Split(' ');
@@ -57,11 +57,11 @@ namespace tworankarray
             {
                 throw new Exception("Ошибка формата файла - строки не равны. Файл должен содержать не менее двух строк чисел разделенных пробелами.");
             }
-            array = new int[2, numStrings[0].Length];
+            array = new int[2, numStrings[0].Length-1];
 
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < numStrings[0].Length; j++)
+                for (int j = 0; j < numStrings[0].Length-1; j++)
                 {
                     if(!int.TryParse(numStrings[i][j],out array[i, j])) {
                         throw new Exception("Ошибка формата файла - не число. Файл должен содержать не менее двух строк чисел разделенных пробелами.");
@@ -91,9 +91,9 @@ namespace tworankarray
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    res += array[i, j];
+                    res += string.Format("{0} ", array[i, j]);
                 }
-                res += '\n';
+                res += string.Format("\r\n");
             }
             return res;
         }
@@ -169,7 +169,7 @@ namespace tworankarray
         public int IndexOfMax(out uint x,out uint y)
         {
             x = y = 0;
-            int max = 0;
+            int max = array[0, 0];
             for (uint i = 0; i < array.GetLength(0); i++)
             {
                 for (uint j = 1; j < array.GetLength(1); j++)
