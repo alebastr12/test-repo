@@ -14,7 +14,7 @@ namespace udvoitel
     public partial class Form1 : Form
     {
         int numCur = 0;
-        int numRes = 0;
+        int numRes = -1;
         int step = 0;
         Stack<int> stepStack = new Stack<int>();
         Random r = new Random();
@@ -25,20 +25,19 @@ namespace udvoitel
         public void stepFun(func f)
         {
             step++;
-            status.Text = string.Format($"Количество шагов: {step}");
             stepStack.Push(numCur);
             cancel.Enabled = true;
             numCur = f(numCur);
-            labelNum.Text = numCur.ToString();
             if (numCur == numRes)
             {
-
                 DialogResult result = MessageBox.Show("Поздравляю, вы победили! Сыграть ещё?", "Ура!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                 {
                     newGame();
                 }
             }
+            rePrint();
+
         }
         static int incF(int n)
         {
@@ -62,12 +61,10 @@ namespace udvoitel
         {
             numRes = r.Next(10, 100);
             numCur = 0;
-            labelInfo.Text = string.Format($"Должен получить {numRes}");
-            labelNum.Text = Convert.ToString(numCur);
             step = 0;
-            status.Text = string.Format($"Количество шагов: {step}");
             stepStack.Clear();
-
+            labelInfo.Text = string.Format($"Должен получить {numRes}");
+            rePrint();
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,8 +85,7 @@ namespace udvoitel
             {
                 cancel.Enabled = false;
             }
-            labelNum.Text = numCur.ToString();
-            status.Text = string.Format($"Количество шагов: {step}");
+            rePrint();
         }
 
         private void reset_Click(object sender, EventArgs e)
@@ -98,6 +94,10 @@ namespace udvoitel
             numCur = 0;
             stepStack.Clear();
             cancel.Enabled = false;
+            rePrint();
+        }
+        void rePrint()
+        {
             labelNum.Text = numCur.ToString();
             status.Text = string.Format($"Количество шагов: {step}");
         }
